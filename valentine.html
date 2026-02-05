@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', cursive;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.page {
+    display: none;
+    width: 100%;
+    padding: 20px;
+}
+
+.page.active {
+    display: block;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 15px 35px;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 40px;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: #ff1e4d;
+}
+
+#noBtn {
+    position: absolute;
+}
+
+.hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    font-size: 25px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="enna_solla_pogirai.mp3" type="audio/mpeg">
+</audio>
+
+<div class="page active">
+    <h1>Hiiiiiiiiiiiiii 💖</h1>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<div class="page">
+    <h1>I hope you like the 1st website.... 🥹💘</h1>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<div class="page">
+    <h1>
+        and i was in a confusion that i should do it now or the other day<br><br>
+        and na romba yosichen and i decided to do it now 🫶
+    </h1>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<div class="page">
+    <h1>AREEE YOUUUU READYYYYY BABBBYYYY 😍🔥</h1>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<div class="page">
+    <h1>
+        JEEVITA... 💖<br>
+        MY LOVE.. MY BABYY.. 🥺<br><br>
+        WILL YOU BE MY VALENTINE THIS YEAR? 💍💘
+    </h1>
+    <br>
+    <button onclick="yesClicked()">YES 😍</button>
+    <button id="noBtn" onmouseover="moveNo()">NO 😏</button>
+</div>
+
+<div class="page">
+    <h1>YYYAYAAAYYYYYYYYY 🎉💖💖💖</h1>
+    <h1>I LOVE YOUUUUUUU 😘😘</h1>
+</div>
+
+<div class="hearts" id="hearts"></div>
+
+<script>
+let pages = document.querySelectorAll('.page');
+let current = 0;
+let musicStarted = false;
+
+function nextPage() {
+    pages[current].classList.remove('active');
+    current++;
+    pages[current].classList.add('active');
+
+    if (!musicStarted) {
+        document.getElementById("bgMusic").play();
+        musicStarted = true;
+    }
+}
+
+function moveNo() {
+    let btn = document.getElementById("noBtn");
+    btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    btn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+}
+
+function yesClicked() {
+    pages[current].classList.remove('active');
+    current++;
+    pages[current].classList.add('active');
+    startHearts();
+}
+
+function startHearts() {
+    const hearts = document.getElementById("hearts");
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        hearts.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
